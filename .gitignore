@@ -51,3 +51,6 @@ coverage/
 .vercel
 .netlify
 
+# Local files
+LOOM_WALKTHROUGH.md
+
