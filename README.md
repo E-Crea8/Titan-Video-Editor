@@ -2,18 +2,18 @@
 
 > Professional browser-based video editing software by **Titan Group Partners**
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://app.netlify.com/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/titan-video-editor/deploy-status)](https://titan-video-editor.netlify.app)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18.2-61dafb.svg)](https://reactjs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-![Titan Video Editor Screenshot](./docs/screenshot.png)
 
 ## 🎬 Overview
 
 Titan Video Editor is a fully functional, browser-based video editing application that enables users to upload, edit, and export videos through a clean and intuitive interface. Built with modern web technologies, it processes videos entirely in the browser using WebAssembly-powered FFmpeg.
 
-**🔗 Live Demo:** [https://titan-video-editor.netlify.app](https://titan-video-editor.netlify.app)
+**🔗 Live App:** [https://titan-video-editor.netlify.app](https://titan-video-editor.netlify.app)
+
+**📦 Repository:** [https://github.com/E-Crea8/Titan-Video-Editor](https://github.com/E-Crea8/Titan-Video-Editor)
 
 **🏢 Company:** [Titan Group Partners](https://titangrouppartners.com/)
 
@@ -142,8 +142,8 @@ Access the admin dashboard at `/admin`:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/titan-group-partners/titan-video-editor.git
-   cd titan-video-editor
+   git clone https://github.com/E-Crea8/Titan-Video-Editor.git
+   cd Titan-Video-Editor
    ```
 
 2. **Install dependencies:**
@@ -177,12 +177,26 @@ Access the admin dashboard at `/admin`:
 To enable full authentication features:
 
 1. Create a project at [supabase.com](https://supabase.com)
-2. Enable **Email/Password** authentication
-3. Enable **Google OAuth** provider:
-   - Create OAuth credentials in Google Cloud Console
-   - Add credentials to Supabase Auth settings
-   - Set redirect URL in Google Console
-4. Create a `profiles` table for admin dashboard:
+
+2. Enable **Email/Password** authentication in Authentication → Providers
+
+3. Configure **URL Settings** (Authentication → URL Configuration):
+   | Setting | Value |
+   |---------|-------|
+   | Site URL | `https://titan-video-editor.netlify.app` |
+   | Redirect URLs | `https://titan-video-editor.netlify.app/auth/callback` |
+
+4. Enable **Google OAuth** provider:
+   - Go to [Google Cloud Console](https://console.cloud.google.com/apis/credentials)
+   - Create OAuth 2.0 Client ID credentials
+   - Add **Authorized JavaScript origins**:
+     - `https://gdsgybwwtnhvpoixgpxz.supabase.co`
+     - `https://titan-video-editor.netlify.app`
+   - Add **Authorized redirect URIs**:
+     - `https://gdsgybwwtnhvpoixgpxz.supabase.co/auth/v1/callback`
+   - Copy Client ID and Secret to Supabase Auth → Providers → Google
+
+5. Create a `profiles` table for admin dashboard:
    ```sql
    CREATE TABLE profiles (
      id UUID REFERENCES auth.users PRIMARY KEY,
@@ -241,22 +255,35 @@ titan-video-editor/
 
 ## 🚢 Deployment
 
-### Netlify (Recommended)
+### Netlify (Current Production)
+
+**Live URL:** https://titan-video-editor.netlify.app
+
+The app is deployed via GitHub integration with automatic deploys on push.
 
 1. **Connect your GitHub repository to Netlify**
+   - Import from: `E-Crea8/Titan-Video-Editor`
 
 2. **Build settings:**
-
    - Build command: `npm run build`
    - Publish directory: `dist`
    - Node version: `20`
 
-3. **Environment variables (in Netlify dashboard):**
+3. **Environment variables** (Site configuration → Environment variables):
 
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
+   | Variable | Value |
+   |----------|-------|
+   | `VITE_SUPABASE_URL` | `https://gdsgybwwtnhvpoixgpxz.supabase.co` |
+   | `VITE_SUPABASE_ANON_KEY` | Your Supabase anon key |
 
-4. **Important:** The `netlify.toml` file already includes the required headers for FFmpeg.wasm (COOP/COEP)
+4. **Important:** The `netlify.toml` file includes required headers for FFmpeg.wasm:
+   ```toml
+   [[headers]]
+     for = "/*"
+     [headers.values]
+       Cross-Origin-Opener-Policy = "same-origin"
+       Cross-Origin-Embedder-Policy = "require-corp"
+   ```
 
 ### Vercel
 
