@@ -1,0 +1,441 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables */
+:root, .dark {
+  /* Titan Brand Colors */
+  --titan-navy: #0d1b4d;
+  --titan-royal: #1a3a7a;
+  --titan-steel: #4a6eb5;
+  --titan-light: #6b87c7;
+  --titan-accent: #8fa8d9;
+  --titan-pale: #b8c9eb;
+  
+  /* Editor Colors - Dark Theme */
+  --editor-bg: #0a0f1c;
+  --editor-panel: #111827;
+  --editor-surface: #1f2937;
+  --editor-border: #374151;
+  --editor-hover: #4b5563;
+  
+  /* Text Colors - Dark Theme */
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  
+  /* Semantic Colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+}
+
+/* Light Theme */
+.light {
+  /* Titan Brand Colors - Same */
+  --titan-navy: #0d1b4d;
+  --titan-royal: #1a3a7a;
+  --titan-steel: #4a6eb5;
+  --titan-light: #6b87c7;
+  --titan-accent: #8fa8d9;
+  --titan-pale: #b8c9eb;
+  
+  /* Editor Colors - Light Theme */
+  --editor-bg: #f5f5f7;
+  --editor-panel: #ffffff;
+  --editor-surface: #f0f0f2;
+  --editor-border: #e0e0e5;
+  --editor-hover: #e5e5ea;
+  
+  /* Text Colors - Light Theme */
+  --text-primary: #1a1a2e;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+}
+
+.light body {
+  color: var(--text-primary);
+}
+
+.light .text-white {
+  color: var(--text-primary);
+}
+
+.light .text-gray-400 {
+  color: var(--text-secondary);
+}
+
+.light .text-gray-500 {
+  color: var(--text-muted);
+}
+
+.light .bg-editor-bg {
+  background-color: var(--editor-bg);
+}
+
+.light .bg-editor-panel {
+  background-color: var(--editor-panel);
+}
+
+.light .bg-editor-surface {
+  background-color: var(--editor-surface);
+}
+
+.light .border-editor-border {
+  border-color: var(--editor-border);
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    @apply border-editor-border;
+  }
+  
+  html {
+    @apply antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  
+  body {
+    @apply bg-editor-bg text-white font-sans;
+    overflow-x: hidden;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-editor-panel rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-titan-steel/50 rounded-full;
+    transition: background-color 0.2s ease;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-titan-steel;
+  }
+  
+  /* Firefox Scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(74, 110, 181, 0.5) #111827;
+  }
+  
+  /* Selection */
+  ::selection {
+    @apply bg-titan-steel/40 text-white;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 
+           font-medium rounded-lg transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-titan-steel/50 focus:ring-offset-2 focus:ring-offset-editor-bg
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-titan-royal to-titan-steel 
+           text-white hover:from-titan-steel hover:to-titan-light
+           shadow-lg shadow-titan-royal/20 hover:shadow-titan-steel/30;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-editor-surface text-white 
+           hover:bg-editor-hover border border-editor-border;
+  }
+  
+  .btn-ghost {
+    @apply btn bg-transparent text-gray-300 
+           hover:bg-editor-surface hover:text-white;
+  }
+  
+  .btn-danger {
+    @apply btn bg-red-600 text-white 
+           hover:bg-red-500 shadow-lg shadow-red-600/20;
+  }
+  
+  .btn-success {
+    @apply btn bg-emerald-600 text-white 
+           hover:bg-emerald-500 shadow-lg shadow-emerald-600/20;
+  }
+  
+  /* Inputs */
+  .input {
+    @apply w-full px-4 py-2.5 bg-editor-surface text-white 
+           border border-editor-border rounded-lg
+           placeholder:text-gray-500
+           focus:outline-none focus:ring-2 focus:ring-titan-steel/50 focus:border-titan-steel
+           transition-all duration-200;
+  }
+  
+  .input-sm {
+    @apply input px-3 py-1.5 text-sm;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-editor-panel rounded-xl border border-editor-border 
+           shadow-xl shadow-black/20;
+  }
+  
+  .card-hover {
+    @apply card transition-all duration-300 
+           hover:border-titan-steel/50 hover:shadow-lg hover:shadow-titan-steel/20;
+  }
+  
+  /* Panels */
+  .panel {
+    @apply bg-editor-panel border border-editor-border rounded-lg p-4;
+  }
+  
+  /* Timeline */
+  .timeline-track {
+    @apply bg-editor-surface rounded-lg border border-editor-border/50;
+  }
+  
+  .timeline-playhead {
+    @apply absolute top-0 bottom-0 w-0.5 bg-red-500 z-10;
+  }
+  
+  .timeline-playhead::after {
+    content: '';
+    @apply absolute -top-1 left-1/2 -translate-x-1/2 
+           w-3 h-3 bg-red-500 rounded-full;
+  }
+  
+  /* Video Preview */
+  .video-container {
+    @apply relative bg-black rounded-lg overflow-hidden 
+           shadow-2xl shadow-black/50;
+  }
+  
+  /* Text Overlay Canvas */
+  .canvas-container {
+    @apply absolute inset-0 pointer-events-auto cursor-move;
+  }
+  
+  .canvas-container.editing {
+    @apply pointer-events-auto cursor-crosshair;
+  }
+  
+  /* Progress Bar */
+  .progress-bar {
+    @apply h-2 bg-editor-surface rounded-full overflow-hidden;
+  }
+  
+  .progress-bar-fill {
+    @apply h-full bg-gradient-to-r from-titan-royal to-titan-steel 
+           transition-all duration-300 ease-out;
+  }
+  
+  /* Tooltips */
+  .tooltip {
+    @apply absolute z-50 px-2 py-1 text-xs font-medium 
+           bg-gray-900 text-white rounded shadow-lg
+           opacity-0 pointer-events-none transition-opacity duration-200;
+  }
+  
+  .tooltip.show {
+    @apply opacity-100;
+  }
+  
+  /* Loading States */
+  .loading-shimmer {
+    @apply animate-pulse bg-gradient-to-r from-editor-surface via-editor-hover to-editor-surface 
+           bg-[length:200%_100%] animate-shimmer;
+  }
+  
+  /* Dropzone */
+  .dropzone {
+    @apply relative flex flex-col items-center justify-center 
+           min-h-[300px] p-8 
+           border-2 border-dashed border-editor-border rounded-2xl
+           bg-editor-panel/50 
+           transition-all duration-300 cursor-pointer;
+  }
+  
+  .dropzone:hover,
+  .dropzone.active {
+    @apply border-titan-steel bg-titan-navy/20;
+  }
+  
+  .dropzone.active {
+    @apply border-titan-light shadow-glow;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  /* Text Gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-titan-light to-titan-accent 
+           bg-clip-text text-transparent;
+  }
+  
+  /* Glass Effect */
+  .glass {
+    @apply bg-editor-panel/80 backdrop-blur-xl;
+  }
+  
+  /* Glow Effects */
+  .glow-sm {
+    box-shadow: 0 0 10px rgba(74, 110, 181, 0.3);
+  }
+  
+  .glow {
+    box-shadow: 0 0 20px rgba(74, 110, 181, 0.4);
+  }
+  
+  .glow-lg {
+    box-shadow: 0 0 40px rgba(74, 110, 181, 0.5);
+  }
+  
+  /* Hide Scrollbar */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Aspect Ratio Containers */
+  .aspect-video-landscape {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .aspect-video-portrait {
+    aspect-ratio: 9 / 16;
+  }
+  
+  .aspect-video-square {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* FFmpeg Loading Animation */
+.ffmpeg-loading {
+  @apply relative overflow-hidden;
+}
+
+.ffmpeg-loading::after {
+  content: '';
+  @apply absolute inset-0 
+         bg-gradient-to-r from-transparent via-white/10 to-transparent
+         animate-shimmer;
+}
+
+/* Video Controls */
+.video-controls {
+  @apply absolute bottom-0 left-0 right-0 
+         bg-gradient-to-t from-black/80 to-transparent 
+         p-4 opacity-0 transition-opacity duration-300;
+}
+
+.video-container:hover .video-controls {
+  @apply opacity-100;
+}
+
+/* Range Slider Styling */
+input[type="range"] {
+  @apply appearance-none bg-transparent cursor-pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  @apply h-1.5 bg-editor-surface rounded-full;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  @apply appearance-none w-4 h-4 -mt-1 
+         bg-titan-steel rounded-full 
+         border-2 border-white
+         shadow-lg cursor-pointer
+         transition-transform duration-150;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  @apply scale-110;
+}
+
+input[type="range"]::-moz-range-track {
+  @apply h-1.5 bg-editor-surface rounded-full;
+}
+
+input[type="range"]::-moz-range-thumb {
+  @apply w-4 h-4 
+         bg-titan-steel rounded-full 
+         border-2 border-white
+         cursor-pointer;
+}
+
+/* Color Picker */
+input[type="color"] {
+  @apply w-10 h-10 p-0 border-0 rounded-lg cursor-pointer;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  @apply p-0 rounded-lg;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  @apply rounded-lg border-2 border-editor-border;
+}
+
