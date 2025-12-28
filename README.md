@@ -20,6 +20,7 @@ Titan Video Editor is a fully functional, browser-based video editing applicatio
 ## ✨ Features
 
 ### Video Upload & Management
+
 - ✅ Drag-and-drop file upload
 - ✅ File selection fallback
 - ✅ Automatic metadata extraction (duration, resolution, FPS)
@@ -27,6 +28,7 @@ Titan Video Editor is a fully functional, browser-based video editing applicatio
 - ✅ File size validation (up to 500MB)
 
 ### Timeline & Trimming
+
 - ✅ Visual timeline with waveform representation
 - ✅ Draggable playhead for precise navigation
 - ✅ Start/end trim handles
@@ -35,6 +37,7 @@ Titan Video Editor is a fully functional, browser-based video editing applicatio
 - ✅ Zoom controls for timeline precision
 
 ### Text Overlay Editing
+
 - ✅ Add multiple text overlays
 - ✅ **Drag to reposition** on canvas with visual feedback
 - ✅ **Hover tooltips** showing text properties
@@ -47,12 +50,14 @@ Titan Video Editor is a fully functional, browser-based video editing applicatio
 - ✅ Double-click to edit text
 
 ### Aspect Ratio & Resizing
+
 - ✅ Landscape (16:9) - YouTube, standard video
 - ✅ Portrait (9:16) - TikTok, Instagram Reels, Stories
 - ✅ Square (1:1) - Instagram posts
 - ✅ Live preview of format changes
 
 ### Rendering & Export
+
 - ✅ Client-side video processing with FFmpeg.wasm
 - ✅ Multiple quality presets (Low, Medium, High, Ultra)
 - ✅ Asynchronous export with progress indication
@@ -60,6 +65,7 @@ Titan Video Editor is a fully functional, browser-based video editing applicatio
 - ✅ Text overlays burned into video
 
 ### User Experience
+
 - ✅ Beautiful, responsive UI with Titan brand colors
 - ✅ **Dark & Light theme** with system preference detection
 - ✅ Theme persistence across sessions
@@ -71,6 +77,7 @@ Titan Video Editor is a fully functional, browser-based video editing applicatio
 - ✅ Settings modal with customization options
 
 ### Authentication
+
 - ✅ User registration and login
 - ✅ **Google OAuth integration**
 - ✅ Password reset functionality
@@ -79,6 +86,7 @@ Titan Video Editor is a fully functional, browser-based video editing applicatio
 - ✅ Demo mode (works without auth)
 
 ### Admin Dashboard
+
 - ✅ Secure admin login
 - ✅ **Real-time user management** from Supabase
 - ✅ User statistics and analytics
@@ -90,6 +98,7 @@ Titan Video Editor is a fully functional, browser-based video editing applicatio
 - ✅ Pagination for user lists
 
 ### Email Notifications (Templates)
+
 - ✅ Welcome email on account creation
 - ✅ Pending project reminders
 - ✅ Google sign-in security alerts
@@ -100,26 +109,26 @@ Titan Video Editor is a fully functional, browser-based video editing applicatio
 
 Access the admin dashboard at `/admin`:
 
-| Credential | Value |
-|------------|-------|
-| **Email** | `admin@titangrouppartners.com` |
-| **Password** | `TitanAdmin2025!` |
+| Credential   | Value                          |
+| ------------ | ------------------------------ |
+| **Email**    | `admin@titangrouppartners.com` |
+| **Password** | `TitanAdmin2025!`              |
 
 ## 🛠️ Technology Stack
 
-| Technology | Purpose |
-|------------|---------|
-| **React 18** | UI Framework |
-| **TypeScript** | Type Safety |
-| **Vite** | Build Tool & Dev Server |
-| **Tailwind CSS** | Styling |
-| **Zustand** | State Management |
-| **FFmpeg.wasm** | Client-side Video Processing |
-| **Framer Motion** | Animations |
-| **Supabase** | Authentication & Database |
-| **React Router** | Navigation |
-| **React Hot Toast** | Notifications |
-| **Lucide React** | Icons |
+| Technology          | Purpose                      |
+| ------------------- | ---------------------------- |
+| **React 18**        | UI Framework                 |
+| **TypeScript**      | Type Safety                  |
+| **Vite**            | Build Tool & Dev Server      |
+| **Tailwind CSS**    | Styling                      |
+| **Zustand**         | State Management             |
+| **FFmpeg.wasm**     | Client-side Video Processing |
+| **Framer Motion**   | Animations                   |
+| **Supabase**        | Authentication & Database    |
+| **React Router**    | Navigation                   |
+| **React Hot Toast** | Notifications                |
+| **Lucide React**    | Icons                        |
 
 ## 🚀 Getting Started
 
@@ -131,27 +140,31 @@ Access the admin dashboard at `/admin`:
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/titan-group-partners/titan-video-editor.git
    cd titan-video-editor
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables:**
-   
+
    Copy `env.example.txt` to `.env.local` and add your Supabase credentials:
+
    ```env
    VITE_SUPABASE_URL=https://your-project.supabase.co
    VITE_SUPABASE_ANON_KEY=your-anon-key-here
    ```
-   
+
    > ⚠️ Without Supabase credentials, the app runs in **Demo Mode** (no authentication required)
 
 4. **Start the development server:**
+
    ```bash
    npm run dev
    ```
@@ -233,11 +246,13 @@ titan-video-editor/
 1. **Connect your GitHub repository to Netlify**
 
 2. **Build settings:**
+
    - Build command: `npm run build`
    - Publish directory: `dist`
    - Node version: `20`
 
 3. **Environment variables (in Netlify dashboard):**
+
    - `VITE_SUPABASE_URL`
    - `VITE_SUPABASE_ANON_KEY`
 
@@ -254,6 +269,7 @@ vercel --prod
 ```
 
 Add to `vercel.json`:
+
 ```json
 {
   "headers": [
@@ -270,33 +286,33 @@ Add to `vercel.json`:
 
 ## ⌨️ Keyboard Shortcuts
 
-| Shortcut | Action |
-|----------|--------|
-| `Space` | Play/Pause video |
-| `←` / `→` | Seek backward/forward 5s |
-| `Shift + ←` / `→` | Fine seek 1s |
-| `Ctrl+Z` | Undo |
-| `Ctrl+Shift+Z` / `Ctrl+Y` | Redo |
-| `Ctrl+E` | Open export modal |
-| `Delete` | Remove selected overlay |
-| `Arrow keys` | Move selected text overlay |
-| `Shift + Arrow` | Move overlay by 10px |
-| `M` | Toggle mute |
-| `F` | Toggle fullscreen |
-| `?` | Show keyboard shortcuts |
-| `Escape` | Close modal / Deselect |
+| Shortcut                  | Action                     |
+| ------------------------- | -------------------------- |
+| `Space`                   | Play/Pause video           |
+| `←` / `→`                 | Seek backward/forward 5s   |
+| `Shift + ←` / `→`         | Fine seek 1s               |
+| `Ctrl+Z`                  | Undo                       |
+| `Ctrl+Shift+Z` / `Ctrl+Y` | Redo                       |
+| `Ctrl+E`                  | Open export modal          |
+| `Delete`                  | Remove selected overlay    |
+| `Arrow keys`              | Move selected text overlay |
+| `Shift + Arrow`           | Move overlay by 10px       |
+| `M`                       | Toggle mute                |
+| `F`                       | Toggle fullscreen          |
+| `?`                       | Show keyboard shortcuts    |
+| `Escape`                  | Close modal / Deselect     |
 
 ## 🎨 Brand Colors
 
 The UI is designed with Titan Group Partners brand colors:
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Navy | `#0d1b4d` | Primary brand |
-| Royal | `#1a3a7a` | Secondary |
-| Steel | `#4a6eb5` | Accent / Interactive |
-| Light | `#6b87c7` | Highlights |
-| Accent | `#8fa8d9` | Subtle accents |
+| Color  | Hex       | Usage                |
+| ------ | --------- | -------------------- |
+| Navy   | `#0d1b4d` | Primary brand        |
+| Royal  | `#1a3a7a` | Secondary            |
+| Steel  | `#4a6eb5` | Accent / Interactive |
+| Light  | `#6b87c7` | Highlights           |
+| Accent | `#8fa8d9` | Subtle accents       |
 
 ## ⚠️ Known Limitations
 
@@ -309,6 +325,7 @@ The UI is designed with Titan Group Partners brand colors:
 4. **Font Rendering:** Text overlays use web-safe fonts. Custom font upload coming soon.
 
 5. **Browser Support:** Requires modern browsers with SharedArrayBuffer support:
+
    - Chrome 92+
    - Firefox 79+
    - Safari 15.2+ (with cross-origin isolation)
@@ -358,6 +375,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📧 Contact
 
 **Titan Group Partners**
+
 - Website: [titangrouppartners.com](https://titangrouppartners.com/)
 - Email: contact@titangrouppartners.com
 
